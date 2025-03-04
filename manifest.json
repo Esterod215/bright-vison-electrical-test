@@ -1,0 +1,9 @@
+{
+  "short_name": "Bright Vision Electrical",
+  "name": "Bright Vision Electrical",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/bright-vison-electrical-test/static/js/main.4547c27c.js",
+    "static/js/453.96ef6d17.chunk.js": "/bright-vison-electrical-test/static/js/453.96ef6d17.chunk.js",
+    "static/media/tesla.jpeg": "/bright-vison-electrical-test/static/media/tesla.69d1c567a937be68fe5e.jpeg",
+    "static/media/van.jpeg": "/bright-vison-electrical-test/static/media/van.a0b40ded29b42eccc95a.jpeg",
+    "static/media/tumbles-22.jpeg": "/bright-vison-electrical-test/static/media/tumbles-22.ebc539f08640e6c22edb.jpeg",
+    "static/media/worker.jpeg": "/bright-vison-electrical-test/static/media/worker.84fe7f9e57fda233d1fc.jpeg",
+    "static/media/seophora.jpeg": "/bright-vison-electrical-test/static/media/seophora.c830890b872a2310cdf2.jpeg",
+    "static/media/hero-bg.jpg": "/bright-vison-electrical-test/static/media/hero-bg.39c80dc9d6ccd7eef2d2.jpg",
+    "index.html": "/bright-vison-electrical-test/index.html",
+    "main.4547c27c.js.map": "/bright-vison-electrical-test/static/js/main.4547c27c.js.map",
+    "453.96ef6d17.chunk.js.map": "/bright-vison-electrical-test/static/js/453.96ef6d17.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.4547c27c.js"
+  ]
+}
