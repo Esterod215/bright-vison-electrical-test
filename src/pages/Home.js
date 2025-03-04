@@ -1,4 +1,5 @@
-import { ArrowForward } from "@mui/icons-material";
+import { useState } from "react";
+import { ArrowForward, Bolt, Close } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -8,6 +9,12 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
 } from "@mui/material";
 
 import worker from "../assets/worker.jpeg";
@@ -18,6 +25,16 @@ import heroBg from "../assets/hero-bg.jpg";
 import van from "../assets/van.jpeg";
 
 const Home = () => {
+  const [openForm, setOpenForm] = useState(false);
+
+  const handleOpenForm = () => {
+    setOpenForm(true);
+  };
+
+  const handleCloseForm = () => {
+    setOpenForm(false);
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -95,41 +112,172 @@ const Home = () => {
                 boxShadow: "0 12px 30px rgba(42,119,255,0.8)",
               },
             }}
+            onClick={handleOpenForm}
           >
             Contact Us
           </Button>
         </Container>
       </Box>
 
-      <Box sx={{ py: 12, backgroundColor: "#F8F8F8", position: "relative" }}>
-        {/* Decorative Blue Shapes */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: "10%",
-            left: "5%",
-            width: "120px",
-            height: "120px",
-            backgroundColor: "#2A77FF",
-            borderRadius: "50%",
-            opacity: 0.15,
-            zIndex: -1,
-          }}
-        />
-        <Box
-          sx={{
-            position: "absolute",
-            top: "40%",
-            right: "10%",
-            width: "100px",
-            height: "100px",
-            backgroundColor: "#2A77FF",
-            borderRadius: "50%",
-            opacity: 0.2,
-            zIndex: -1,
-          }}
-        />
+      {/* Metrics Section */}
+      <Box
+        sx={{
+          py: 12,
+          backgroundColor: "offwhite",
+          textAlign: "center",
+        }}
+      >
+        <Container maxWidth="lg">
+          <Grid container spacing={6} justifyContent="center">
+            {[
+              {
+                value: "20+",
+                label: "Years of Experience",
+              },
+              {
+                value: "100%",
+                label: "Approval Rating",
+              },
+              {
+                value: "Multi-State",
+                label: "Service Coverage",
+              },
+            ].map((metric, index) => (
+              <Grid item xs={12} sm={4} key={index}>
+                <Box
+                  sx={{
+                    p: 4,
+                    borderRadius: "12px",
+                    boxShadow: "0 6px 18px rgba(42, 119, 255, 0.2)",
+                    backgroundColor: "#F8F8F8",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                      boxShadow: "0 8px 24px rgba(42, 119, 255, 0.3)",
+                    },
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#2A77FF",
+                      mb: 1,
+                    }}
+                  >
+                    {metric.value}
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#555555",
+                    }}
+                  >
+                    {metric.label}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
 
+      {/* Contact Us Form (Dialog) */}
+      <Dialog
+        keepMounted={false}
+        open={openForm}
+        onClose={handleCloseForm}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogContent
+          sx={{
+            p: 4,
+            position: "relative",
+            backgroundColor: "#F8F8F8",
+            borderRadius: "12px",
+            boxShadow: "0 10px 25px rgba(42, 119, 255, 0.3)",
+          }}
+        >
+          <IconButton
+            onClick={handleCloseForm}
+            sx={{
+              position: "absolute",
+              top: 16,
+              right: 16,
+              color: "#2A77FF",
+            }}
+          >
+            <Close />
+          </IconButton>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              mb: 3,
+            }}
+          >
+            <Bolt sx={{ fontSize: 60, color: "#2A77FF" }} />
+          </Box>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: "center",
+              fontWeight: "bold",
+              color: "#333333",
+              mb: 2,
+            }}
+          >
+            Let's Power Your Vision
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ textAlign: "center", color: "#555555", mb: 4 }}
+          >
+            Fill out the form below and we'll get back to you with a free quote
+            for your next project.
+          </Typography>
+          <Box
+            component="form"
+            sx={{ display: "flex", flexDirection: "column", gap: 3 }}
+          >
+            <TextField
+              autoFocus
+              label="Full Name"
+              variant="outlined"
+              fullWidth
+            />
+            <TextField label="Email Address" variant="outlined" fullWidth />
+            <TextField label="Phone Number" variant="outlined" fullWidth />
+            <TextField
+              label="Message"
+              variant="outlined"
+              multiline
+              rows={4}
+              fullWidth
+            />
+            <Button
+              variant="contained"
+              sx={{
+                background: "linear-gradient(135deg, #2A77FF 0%, #1C5F99 100%)",
+                color: "#FFFFFF",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                boxShadow: "0 10px 20px rgba(42, 119, 255, 0.6)",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0 12px 25px rgba(42, 119, 255, 0.8)",
+                },
+              }}
+            >
+              Submit
+            </Button>
+          </Box>
+        </DialogContent>
+      </Dialog>
+
+      <Box sx={{ py: 12, backgroundColor: "#F8F8F8", position: "relative" }}>
         <Container maxWidth="lg">
           <Typography
             variant="h3"
@@ -143,7 +291,6 @@ const Home = () => {
             Who We Are
           </Typography>
 
-          {/* Custom Underline */}
           <Box
             sx={{
               width: "120px",
@@ -155,7 +302,6 @@ const Home = () => {
             }}
           />
           <Grid container spacing={6}>
-            {/* Left Side - Text */}
             <Grid item xs={12} md={6}>
               <Typography sx={{ color: "#555555", lineHeight: 1.8, mb: 3 }}>
                 Located in Las Vegas, Bright Vision Electric is a full-service
@@ -163,14 +309,7 @@ const Home = () => {
                 across Nevada. Our team is committed to delivering the highest
                 quality craftsmanship and customer satisfaction.
               </Typography>
-              <Typography sx={{ color: "#555555", lineHeight: 1.8, mb: 3 }}>
-                We travel directly to your location, offering fast and efficient
-                on-site services to meet your electrical needs, ensuring
-                reliability and professionalism at every step.
-              </Typography>
             </Grid>
-
-            {/* Right Side - Image */}
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
@@ -178,7 +317,7 @@ const Home = () => {
                 alt="Electrician at work"
                 sx={{
                   width: "100%",
-                  height: "450px", // Adjusted height
+                  height: "450px",
                   borderRadius: "12px",
                   boxShadow: "0 12px 35px rgba(42, 119, 255, 0.2)",
                   objectFit: "cover",
@@ -192,11 +331,9 @@ const Home = () => {
             </Grid>
           </Grid>
 
-          {/* Spacer */}
           <Box sx={{ my: 8 }} />
 
           <Grid container spacing={6}>
-            {/* Left Side - Image */}
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
@@ -204,7 +341,7 @@ const Home = () => {
                 alt="Service Van"
                 sx={{
                   width: "100%",
-                  height: "450px", // Adjusted height
+                  height: "450px",
                   borderRadius: "12px",
                   boxShadow: "0 12px 35px rgba(42, 119, 255, 0.2)",
                   objectFit: "cover",
@@ -216,26 +353,16 @@ const Home = () => {
                 }}
               />
             </Grid>
-
-            {/* Right Side - Text */}
             <Grid item xs={12} md={6}>
               <Typography sx={{ color: "#555555", lineHeight: 1.8, mb: 3 }}>
                 We pride ourselves on offering high-quality electrical services
-                that cater to both residential and commercial needs. From wiring
-                to installations, we guarantee precise and efficient work every
-                time.
-              </Typography>
-              <Typography sx={{ color: "#555555", lineHeight: 1.8 }}>
-                Our experienced team is equipped to handle all electrical tasks,
-                big or small, and we ensure the job is completed on time and on
-                budget. We’re just a phone call away.
+                that cater to both residential and commercial needs.
               </Typography>
             </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* Featured Projects Section */}
       <Box sx={{ py: 6 }}>
         <Container maxWidth="lg">
           <Typography
@@ -247,10 +374,9 @@ const Home = () => {
               mb: 6,
             }}
           >
-            Featured Projects
+            Trusted by Top Companies
           </Typography>
 
-          {/* Custom Underline */}
           <Box
             sx={{
               width: "120px",
@@ -327,6 +453,7 @@ const Home = () => {
             variant="text"
             sx={{ color: "#2A77FF", mt: 4 }}
             endIcon={<ArrowForward />}
+            onClick={handleOpenForm}
           >
             Work With Us
           </Button>

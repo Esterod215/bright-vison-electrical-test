@@ -31,7 +31,7 @@ const Navbar = () => {
               typography:{xs: "h6", md: "h3"},
             }}
           >
-            Bright Vision Electric
+            Bright Vision Electric LOGO
           </Typography>
 
           {/* Desktop Menu */}
